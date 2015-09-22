@@ -7,13 +7,14 @@ import (
 )
 
 func main() {
-	chs, _ := gorecpt1.GetChannels()
+	rec := gorecpt1.New("/dev/hoge")
+	chs, _ := rec.GetChannels()
 	fmt.Println("Channels:")
 	for c := range chs {
 		fmt.Println(c)
 	}
 
-	cmd := gorecpt1.RecordCmd("1", 1 * time.Minute, "test.ts", []string{"--dev", "/dev/hoge", "--b25", "--strip"})
+	cmd := rec.RecordCmd("1", 1 * time.Minute, "test.ts")
 	fmt.Println("CMD: " + cmd)
 }
 
